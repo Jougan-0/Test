@@ -1,0 +1,2961 @@
+name: Shlok Test
+version: 0.0.187
+services:
+  components.dapr.io:
+    annotations: {}
+    apiVersion: apiextensions.k8s.io/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: components.dapr.io
+    namespace: ""
+    settings:
+      spec:
+        group: dapr.io
+        names:
+          categories:
+          - all
+          - dapr
+          kind: Component
+          plural: components
+          singular: component
+        scope: Namespaced
+        versions:
+        - name: v1alpha1
+          schema:
+            open APIV3Schema:
+              description: Component describes an Dapr component type
+              properties:
+                api Version:
+                  description: 'APIVersion defines the versioned schema of this representation
+                    of an object. Servers should convert recognized schemas to the
+                    latest internal value, and may reject unrecognized values. More
+                    info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+                  type: string
+                auth:
+                  description: Auth represents authentication details for the component
+                  properties:
+                    secret Store:
+                      type: string
+                  required:
+                  - secretStore
+                  type: object
+                kind:
+                  description: 'Kind is a string value representing the REST resource
+                    this object represents. Servers may infer this from the endpoint
+                    the client submits requests to. Cannot be updated. In CamelCase.
+                    More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+                  type: string
+                metadata:
+                  type: object
+                scopes:
+                  items:
+                    type: string
+                  type: array
+                spec:
+                  description: ComponentSpec is the spec for a component
+                  properties:
+                    ignore Errors:
+                      type: boolean
+                    init Timeout:
+                      type: string
+                    metadata:
+                      items:
+                        description: MetadataItem is a name/value pair for a metadata
+                        properties:
+                          name:
+                            type: string
+                          secret Key Ref:
+                            description: SecretKeyRef is a reference to a secret holding
+                              the value for the metadata item. Name is the secret
+                              name, and key is the field in the secret.
+                            properties:
+                              key:
+                                type: string
+                              name:
+                                type: string
+                            required:
+                            - key
+                            - name
+                            type: object
+                          value:
+                            x-kubernetes-preserve-unknown-fields: true
+                        required:
+                        - name
+                        type: object
+                      type: array
+                    type:
+                      type: string
+                    version:
+                      type: string
+                  required:
+                  - metadata
+                  - type
+                  - version
+                  type: object
+              type: object
+          served: true
+          storage: true
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: 568354b0-343c-4d18-b97c-b0066c5d132c
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isNamespaced: false
+          logoURL: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/white/kubernetes-icon-white.svg
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: circle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            z-index: 14
+          styles: ""
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/customresourcedefinition-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/customresourcedefinition-white.svg
+        position:
+          posX: 556.5737007710205
+          posY: -223.22441212751724
+        whiteboardData:
+          style: {}
+    type: CustomResourceDefinition
+    version: ""
+  configurations.dapr.io:
+    annotations: {}
+    apiVersion: apiextensions.k8s.io/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: configurations.dapr.io
+    namespace: ""
+    settings:
+      spec:
+        group: dapr.io
+        names:
+          categories:
+          - all
+          - dapr
+          kind: Configuration
+          plural: configurations
+          singular: configuration
+        scope: Namespaced
+        versions:
+        - name: v1alpha1
+          schema:
+            open APIV3Schema:
+              description: Configuration describes an Dapr configuration setting
+              properties:
+                api Version:
+                  description: 'APIVersion defines the versioned schema of this representation
+                    of an object. Servers should convert recognized schemas to the
+                    latest internal value, and may reject unrecognized values. More
+                    info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+                  type: string
+                kind:
+                  description: 'Kind is a string value representing the REST resource
+                    this object represents. Servers may infer this from the endpoint
+                    the client submits requests to. Cannot be updated. In CamelCase.
+                    More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+                  type: string
+                metadata:
+                  type: object
+                spec:
+                  description: ConfigurationSpec is the spec for an configuration
+                  properties:
+                    access Control:
+                      description: AccessControlSpec is the spec object in ConfigurationSpec
+                      properties:
+                        default Action:
+                          type: string
+                        policies:
+                          items:
+                            description: AppPolicySpec defines the policy data structure
+                              for each app
+                            properties:
+                              app Id:
+                                type: string
+                              default Action:
+                                type: string
+                              namespace:
+                                type: string
+                              operations:
+                                items:
+                                  description: AppOperationAction defines the data
+                                    structure for each app operation
+                                  properties:
+                                    action:
+                                      type: string
+                                    http Verb:
+                                      items:
+                                        type: string
+                                      type: array
+                                    name:
+                                      type: string
+                                  required:
+                                  - action
+                                  - name
+                                  type: object
+                                type: array
+                              trust Domain:
+                                type: string
+                            required:
+                            - appId
+                            type: object
+                          type: array
+                        trust Domain:
+                          type: string
+                      type: object
+                    http Pipeline:
+                      description: PipelineSpec defines the middleware pipeline
+                      properties:
+                        handlers:
+                          items:
+                            description: HandlerSpec defines a request handlers
+                            properties:
+                              name:
+                                type: string
+                              selector:
+                                description: SelectorSpec selects target services
+                                  to which the handler is to be applied
+                                properties:
+                                  fields:
+                                    items:
+                                      description: SelectorField defines a selector
+                                        fields
+                                      properties:
+                                        field:
+                                          type: string
+                                        value:
+                                          type: string
+                                      required:
+                                      - field
+                                      - value
+                                      type: object
+                                    type: array
+                                required:
+                                - fields
+                                type: object
+                              type:
+                                type: string
+                            required:
+                            - name
+                            - type
+                            type: object
+                          type: array
+                      required:
+                      - handlers
+                      type: object
+                    mTLS:
+                      description: MTLSSpec defines mTLS configuration
+                      properties:
+                        allowed Clock Skew:
+                          type: string
+                        enabled:
+                          type: boolean
+                        workload Cert TTL:
+                          type: string
+                      required:
+                      - enabled
+                      type: object
+                    metric:
+                      default:
+                        enabled: true
+                      description: MetricSpec defines metrics configuration
+                      properties:
+                        enabled:
+                          type: boolean
+                      required:
+                      - enabled
+                      type: object
+                    secrets:
+                      description: SecretsSpec is the spec for secrets configuration
+                      properties:
+                        scopes:
+                          items:
+                            description: SecretsScope defines the scope for secrets
+                            properties:
+                              allowed Secrets:
+                                items:
+                                  type: string
+                                type: array
+                              default Access:
+                                type: string
+                              denied Secrets:
+                                items:
+                                  type: string
+                                type: array
+                              store Name:
+                                type: string
+                            required:
+                            - storeName
+                            type: object
+                          type: array
+                      required:
+                      - scopes
+                      type: object
+                    tracing:
+                      description: TracingSpec is the spec object in ConfigurationSpec
+                      properties:
+                        sampling Rate:
+                          type: string
+                        zipkin:
+                          description: Defines the Zipkin trace configurations
+                          properties:
+                            endpoint Address:
+                              description: The endpoint address of Zipkin server to
+                                receive traces
+                              type: string
+                          type: object
+                      required:
+                      - samplingRate
+                      type: object
+                  type: object
+              type: object
+          served: true
+          storage: true
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: a86dc60b-b033-4e24-878b-666734104d07
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isNamespaced: false
+          logoURL: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/white/kubernetes-icon-white.svg
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: circle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            z-index: 9
+          styles: ""
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/customresourcedefinition-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/customresourcedefinition-white.svg
+        position:
+          posX: 573.2903527610378
+          posY: 47.76020429472196
+        whiteboardData:
+          style: {}
+    type: CustomResourceDefinition
+    version: ""
+  dapr-api:
+    annotations: {}
+    apiVersion: v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: dapr-api
+    namespace: default
+    settings:
+      spec:
+        ports:
+        - port: 80
+          protocol: TCP
+          target Port: 6500
+        selector:
+          app: dapr-operator
+    traits:
+      meshmap:
+        edges:
+        - data:
+            id: 50c218a7-f829-44d0-8079-f9675b3d4a96
+            metadata:
+              port: 80
+              protocol: TCP
+            source: f7a7dd38-5506-4fd1-a4a4-f1858e432cc6
+            subType: Network
+            target: 9ed4c311-1451-4b91-8071-c7d86d0d803e
+          style:
+            control-point-distances: null
+            control-point-weights: "0.5"
+            curve-style: bezier
+            haystack-radius: "0"
+            line-color: rgb(153,153,153)
+            line-style: dotted
+            opacity: "1"
+            segment-distances: 20px
+            segment-weights: "0.5"
+            target-arrow-shape: vee
+            taxi-direction: auto
+            taxi-turn: 50%
+            taxi-turn-min-distance: 10px
+            width: 1.5px
+        fieldRefData: {}
+        id: f7a7dd38-5506-4fd1-a4a4-f1858e432cc6
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/white/kubernetes-icon-white.svg
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-triangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            background-position-y: 4.5
+            height: 20
+            padding: 12
+            width: 20
+            x: 10px
+            "y": 12px
+            z-index: 22
+          styles: '{"height":20,"width":20,"padding":12,"background-position-y":4.5,"x":"10px","y":"12px"}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/service-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/service-white.svg
+        position:
+          posX: -701.4926688741347
+          posY: -323.866533820621
+        whiteboardData:
+          style: {}
+    type: Service
+    version: ""
+  dapr-dashboard-bdvwq:
+    annotations: {}
+    apiVersion: v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: dapr-dashboard
+    namespace: default
+    settings:
+      spec:
+        ports:
+        - port: 8080
+          protocol: TCP
+          target Port: 8080
+        selector:
+          app: dapr-dashboard
+        type: ClusterIP
+    traits:
+      meshmap:
+        edges:
+        - data:
+            id: 06980c06-72b7-4c06-b641-1bcf78b4caa4
+            metadata:
+              port: 8080
+              protocol: TCP
+            source: 2266653e-e968-42a2-a460-62da56042da2
+            subType: Network
+            target: f3e616b1-071d-407a-8e7b-d3c879861818
+          style:
+            control-point-distances: null
+            control-point-weights: "0.5"
+            curve-style: bezier
+            haystack-radius: "0"
+            line-color: rgb(153,153,153)
+            line-style: dotted
+            opacity: "1"
+            segment-distances: 20px
+            segment-weights: "0.5"
+            target-arrow-shape: vee
+            taxi-direction: auto
+            taxi-turn: 50%
+            taxi-turn-min-distance: 10px
+            width: 1.5px
+        fieldRefData: {}
+        id: 2266653e-e968-42a2-a460-62da56042da2
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/white/kubernetes-icon-white.svg
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-triangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            background-position-y: 4.5
+            height: 20
+            padding: 12
+            width: 20
+            x: 10px
+            "y": 12px
+            z-index: 16
+          styles: '{"height":20,"width":20,"padding":12,"background-position-y":4.5,"x":"10px","y":"12px"}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/service-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/service-white.svg
+        position:
+          posX: 543.0704096533708
+          posY: 158.46109066061504
+        whiteboardData:
+          style: {}
+    type: Service
+    version: ""
+  dapr-dashboard-ygnpw:
+    annotations: {}
+    apiVersion: apps/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels:
+      app: dapr-dashboard
+    model: kubernetes
+    name: dapr-dashboard
+    namespace: default
+    settings:
+      spec:
+        replicas: 1
+        selector:
+          match Labels:
+            app: dapr-dashboard
+        template:
+          metadata:
+            labels:
+              app: dapr-dashboard
+              app.kubernetes.io/component: dashboard
+              app.kubernetes.io/managed-by: helm
+              app.kubernetes.io/name: dapr
+              app.kubernetes.io/part-of: dapr
+              app.kubernetes.io/version: 1.1.0
+          spec:
+            affinity:
+              node Affinity:
+                required During Scheduling Ignored During Execution:
+                  node Selector Terms:
+                  - match Expressions:
+                    - key: kubernetes.io/os
+                      operator: In
+                      values:
+                      - linux
+            containers:
+            - env:
+              - name: NAMESPACE
+                value From:
+                  field Ref:
+                    field Path: metadata.namespace
+              image: docker.io/daprio/dashboard:0.6.0
+              image Pull Policy: IfNotPresent
+              name: dapr-dashboard
+              ports:
+              - container Port: 8080
+              resources: {}
+              security Context:
+                run As Non Root: true
+            service Account Name: dashboard-reader
+    traits:
+      meshmap:
+        edges:
+        - data:
+            id: 06980c06-72b7-4c06-b641-1bcf78b4caa4
+            metadata:
+              port: 8080
+              protocol: TCP
+            source: 2266653e-e968-42a2-a460-62da56042da2
+            subType: Network
+            target: f3e616b1-071d-407a-8e7b-d3c879861818
+          style:
+            control-point-distances: null
+            control-point-weights: "0.5"
+            curve-style: bezier
+            haystack-radius: "0"
+            line-color: rgb(153,153,153)
+            line-style: dotted
+            opacity: "1"
+            segment-distances: 20px
+            segment-weights: "0.5"
+            target-arrow-shape: vee
+            taxi-direction: auto
+            taxi-turn: 50%
+            taxi-turn-min-distance: 10px
+            width: 1.5px
+        fieldRefData: {}
+        id: f3e616b1-071d-407a-8e7b-d3c879861818
+        meshmodel-metadata:
+          capabilities: |-
+            {
+              "fieldRefs": [
+                {
+                  "fieldPath": "spec.template.spec.containers",
+                  "jsonSchemaPath": "properties.spec.allOf[0].properties.template.allOf[0].properties.spec.allOf[0].properties.containers.items.allOf[0]",
+                  "component": {
+                    "kind": "Container",
+                    "model": "meshery-core"
+                  },
+                  "renderChildren": true
+                },
+                {
+                  "fieldPath": "spec.template.spec.init Containers",
+                  "jsonSchemaPath": "properties.spec.allOf[0].properties.template.allOf[0].properties.spec.allOf[0].properties.init Containers.items.allOf[0]",
+                  "component": {
+                    "kind": "Container",
+                    "model": "meshery-core"
+                  },
+                  "renderChildren": true
+                }
+              ],
+              "designer": {
+                "edit": {
+                  "shape": {
+                    "convert-shape": false
+                  }
+                }
+              }
+            }
+          defaultData: ""
+          genealogy: parent
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: Created by Meshery Authors
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-rectangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            background-opacity: 0.5
+            border-width: 2
+            z-index: 23
+          styles: '{"border-width":2,"background-opacity":0.5}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/deployment-color.svg
+          svgComplete: ui/public/static/img/meshmodels/kubernetes/complete/deployment-complete.svg
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/deployment-white.svg
+        position:
+          posX: 585.6091308919073
+          posY: -16.854990485200112
+        whiteboardData:
+          style: {}
+    type: Deployment
+    version: ""
+  dapr-dashboard-yuqvb:
+    annotations: {}
+    apiVersion: ""
+    dependsOn:
+    - dapr-dashboard-ygnpw
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: meshery-core
+    name: dapr-dashboard
+    namespace: ""
+    settings: {}
+    traits:
+      meshmap:
+        edges: []
+        elementType: FIELD_REF_NODE
+        fieldRefData:
+          elementType: FIELD_REF_NODE
+          fieldPath: spec.template.spec.containers[0]
+          jsonSchemaPath: properties.spec.allOf[0].properties.template.allOf[0].properties.spec.allOf[0].properties.containers.items.allOf[0]
+        id: 94558d2d-023b-4292-a3fb-aef3bd6bcf62
+        label: spec.template.spec.containers[0]
+        meshmodel-data:
+          category:
+            metadata: null
+            name: Orchestration & Management
+          components: null
+          description: ""
+          displayName: Meshery Core
+          hostID: 26e64aa8-2d86-57bd-92b3-2a73160d27b4
+          id: 71af0d59-f11b-5151-924a-f9f805edb3df
+          metadata:
+            isAnnotation: false
+            subCategory: App Definition and Development
+            svgColor: ui/public/static/img/meshmodels/meshery-core/color/meshery-core-color.svg
+            svgComplete: ""
+            svgWhite: ui/public/static/img/meshmodels/meshery-core/color/meshery-core-color.svg
+          model:
+            version: 0.7.2
+          name: meshery-core
+          registrant:
+            hostname: artifacthub
+          relationships: null
+          schemaVersion: models.meshery.io/v1beta1
+          status: enabled
+          subCategory: App Definition and Development
+          version: v1.0.0
+        meshmodel-metadata:
+          capabilities: |-
+            {
+              "designer": {
+                "capabilities": {
+                  "config": true,
+                  "label": false,
+                  "policy": false,
+                  "relationships": true,
+                  "json-schema": false,
+                  "permissions": false,
+                  "workflow": false,
+                  "gitops": false,
+                  "history": false
+                },
+                "supportsCompoundDragAndDrop": false,
+                "edit": {
+                  "config": true,
+                  "copy": false,
+                  "delete": true,
+                  "duplicate": false,
+                  "reset-styles": false,
+                  "resolve": false,
+                  "lock": false,
+                  "shape": {
+                    "convert-shape": true
+                  },
+                  "style": true
+                },
+                "label": {
+                  "edit": false,
+                  "show": true,
+                  "sync-with-config-property": "name"
+                }
+              }
+            }
+          defaultData: ""
+          genealogy: ""
+          hasInvalidSchema: true
+          isAnnotation: true
+          primaryColor: '#326CE5'
+          secondaryColor: '#00D3A9'
+          shape: circle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            z-index: 31
+          styles: ""
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/meshery-core/color/container-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/meshery-core/white/container-white.svg
+        parent: f3e616b1-071d-407a-8e7b-d3c879861818
+        position:
+          posX: 585.6091308919073
+          posY: -25.854990485200112
+        whiteboardData: {}
+    type: Container
+    version: ""
+  dapr-operator-admin:
+    annotations: {}
+    apiVersion: rbac.authorization.k8s.io/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: dapr-operator-admin
+    namespace: ""
+    settings:
+      rules:
+      - api Groups:
+        - '*'
+        resources:
+        - serviceaccounts
+        - deployments
+        - services
+        - configmaps
+        - secrets
+        - components
+        - configurations
+        - leases
+        verbs:
+        - get
+      - api Groups:
+        - '*'
+        resources:
+        - deployments
+        - services
+        - components
+        - configurations
+        - subscriptions
+        - leases
+        verbs:
+        - list
+      - api Groups:
+        - '*'
+        resources:
+        - deployments
+        - services
+        - components
+        - configurations
+        - subscriptions
+        - leases
+        verbs:
+        - watch
+      - api Groups:
+        - '*'
+        resources:
+        - services
+        - secrets
+        - configmaps
+        - leases
+        - services/finalizers
+        - deployments/finalizers
+        verbs:
+        - update
+      - api Groups:
+        - '*'
+        resources:
+        - services
+        - leases
+        verbs:
+        - delete
+      - api Groups:
+        - '*'
+        resources:
+        - deployments
+        - services
+        - configmaps
+        - events
+        - leases
+        verbs:
+        - create
+    traits:
+      meshmap:
+        edges:
+        - data:
+            id: 296ec399-7dac-49b4-b224-8dcc1763cd32
+            metadata:
+              binded_by: 998b7eec-4a78-4a67-99a8-4cb1bae65046
+            source: bc5c273d-ee4c-45a6-8fbd-5e4280e0bc35
+            subType: Permission
+            target: 1e6697dd-855a-453a-9ebd-083ac08318b2
+          style:
+            control-point-distances: null
+            control-point-weights: "0.5"
+            curve-style: bezier
+            haystack-radius: "0"
+            line-color: rgb(153,153,153)
+            line-style: dotted
+            opacity: "1"
+            segment-distances: 20px
+            segment-weights: "0.5"
+            target-arrow-shape: vee
+            taxi-direction: auto
+            taxi-turn: 50%
+            taxi-turn-min-distance: 10px
+            width: 1.5px
+        fieldRefData: {}
+        id: bc5c273d-ee4c-45a6-8fbd-5e4280e0bc35
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: false
+          logoURL: Created by Meshery Authors
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-rectangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides: '{"height":"22px", "width":"22px", "x":"8.5", "y":"7.5"}'
+          styles: '{"height":"22px", "width":"22px", "x":"8.5", "y":"7.5"}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/clusterrole-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/clusterrole-white.svg
+        position:
+          posX: -912.5348881475251
+          posY: -111.82614039010265
+        whiteboardData:
+          style: {}
+    type: ClusterRole
+    version: ""
+  dapr-operator-glqao:
+    annotations: {}
+    apiVersion: rbac.authorization.k8s.io/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: dapr-operator
+    namespace: ""
+    settings:
+      role Ref:
+        api Group: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: dapr-operator-admin
+      subjects:
+      - kind: ServiceAccount
+        name: dapr-operator
+        namespace: default
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: 998b7eec-4a78-4a67-99a8-4cb1bae65046
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: false
+          logoURL: Created by Meshery Authors
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-rectangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            height: 25px
+            width: 25px
+            x: "7"
+            "y": "7"
+            z-index: 1001
+          styles: '{"height":"25px","width":"25px","x":"7", "y":"7"}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/clusterrolebinding-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/clusterrolebinding-white.svg
+        position:
+          posX: -908.5769236184135
+          posY: -55.771530519578874
+        whiteboardData:
+          style:
+            height: 10.5
+            width: 10.5
+            z-index: 1000
+    type: ClusterRoleBinding
+    version: ""
+  dapr-operator-mhqfr:
+    annotations: {}
+    apiVersion: v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: dapr-operator
+    namespace: default
+    settings:
+      image Pull Secrets: []
+      secrets: []
+    traits:
+      meshmap:
+        edges:
+        - data:
+            id: 296ec399-7dac-49b4-b224-8dcc1763cd32
+            metadata:
+              binded_by: 998b7eec-4a78-4a67-99a8-4cb1bae65046
+            source: bc5c273d-ee4c-45a6-8fbd-5e4280e0bc35
+            subType: Permission
+            target: 1e6697dd-855a-453a-9ebd-083ac08318b2
+          style:
+            control-point-distances: null
+            control-point-weights: "0.5"
+            curve-style: bezier
+            haystack-radius: "0"
+            line-color: rgb(153,153,153)
+            line-style: dotted
+            opacity: "1"
+            segment-distances: 20px
+            segment-weights: "0.5"
+            target-arrow-shape: vee
+            taxi-direction: auto
+            taxi-turn: 50%
+            taxi-turn-min-distance: 10px
+            width: 1.5px
+        fieldRefData: {}
+        id: 1e6697dd-855a-453a-9ebd-083ac08318b2
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/white/kubernetes-icon-white.svg
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: bottom-round-rectangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            z-index: 7
+          styles: ""
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/serviceaccount-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/serviceaccount-white.svg
+        position:
+          posX: -904.6341016154629
+          posY: 0.06862356435012629
+        whiteboardData:
+          style: {}
+    type: ServiceAccount
+    version: ""
+  dapr-operator-nxudp:
+    annotations: {}
+    apiVersion: apps/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels:
+      app: dapr-operator
+    model: kubernetes
+    name: dapr-operator
+    namespace: default
+    settings:
+      spec:
+        replicas: 1
+        selector:
+          match Labels:
+            app: dapr-operator
+        template:
+          metadata:
+            annotations:
+              prometheus.io/path: /
+              prometheus.io/port: "9090"
+              prometheus.io/scrape: "true"
+            labels:
+              app: dapr-operator
+              app.kubernetes.io/component: operator
+              app.kubernetes.io/managed-by: helm
+              app.kubernetes.io/name: dapr
+              app.kubernetes.io/part-of: dapr
+              app.kubernetes.io/version: 1.1.0
+          spec:
+            affinity:
+              node Affinity:
+                required During Scheduling Ignored During Execution:
+                  node Selector Terms:
+                  - match Expressions:
+                    - key: kubernetes.io/os
+                      operator: In
+                      values:
+                      - linux
+            containers:
+            - args:
+              - --log-level
+              - info
+              - --enable-metrics
+              - --metrics-port
+              - "9090"
+              command:
+              - /operator
+              env:
+              - name: NAMESPACE
+                value From:
+                  field Ref:
+                    field Path: metadata.namespace
+              image: docker.io/daprio/dapr:1.1.0
+              image Pull Policy: IfNotPresent
+              liveness Probe:
+                failure Threshold: 5
+                http Get:
+                  path: /healthz
+                  port: 8080
+                initial Delay Seconds: 3
+                period Seconds: 3
+              name: dapr-operator
+              ports:
+              - container Port: 6500
+              - container Port: 9090
+                name: metrics
+                protocol: TCP
+              readiness Probe:
+                failure Threshold: 5
+                http Get:
+                  path: /healthz
+                  port: 8080
+                initial Delay Seconds: 3
+                period Seconds: 3
+              resources: {}
+              security Context:
+                run As Non Root: true
+              volume Mounts:
+              - mount Path: /var/run/dapr/credentials
+                name: credentials
+                read Only: true
+            service Account Name: dapr-operator
+            volumes:
+            - name: credentials
+              secret:
+                secret Name: dapr-trust-bundle
+    traits:
+      meshmap:
+        edges:
+        - data:
+            id: 50c218a7-f829-44d0-8079-f9675b3d4a96
+            metadata:
+              port: 80
+              protocol: TCP
+            source: f7a7dd38-5506-4fd1-a4a4-f1858e432cc6
+            subType: Network
+            target: 9ed4c311-1451-4b91-8071-c7d86d0d803e
+          style:
+            control-point-distances: null
+            control-point-weights: "0.5"
+            curve-style: bezier
+            haystack-radius: "0"
+            line-color: rgb(153,153,153)
+            line-style: dotted
+            opacity: "1"
+            segment-distances: 20px
+            segment-weights: "0.5"
+            target-arrow-shape: vee
+            taxi-direction: auto
+            taxi-turn: 50%
+            taxi-turn-min-distance: 10px
+            width: 1.5px
+        fieldRefData: {}
+        id: 9ed4c311-1451-4b91-8071-c7d86d0d803e
+        meshmodel-metadata:
+          capabilities: |-
+            {
+              "fieldRefs": [
+                {
+                  "fieldPath": "spec.template.spec.containers",
+                  "jsonSchemaPath": "properties.spec.allOf[0].properties.template.allOf[0].properties.spec.allOf[0].properties.containers.items.allOf[0]",
+                  "component": {
+                    "kind": "Container",
+                    "model": "meshery-core"
+                  },
+                  "renderChildren": true
+                },
+                {
+                  "fieldPath": "spec.template.spec.init Containers",
+                  "jsonSchemaPath": "properties.spec.allOf[0].properties.template.allOf[0].properties.spec.allOf[0].properties.init Containers.items.allOf[0]",
+                  "component": {
+                    "kind": "Container",
+                    "model": "meshery-core"
+                  },
+                  "renderChildren": true
+                }
+              ],
+              "designer": {
+                "edit": {
+                  "shape": {
+                    "convert-shape": false
+                  }
+                }
+              }
+            }
+          defaultData: ""
+          genealogy: parent
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: Created by Meshery Authors
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-rectangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            background-opacity: 0.5
+            border-width: 2
+            z-index: 21
+          styles: '{"border-width":2,"background-opacity":0.5}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/deployment-color.svg
+          svgComplete: ui/public/static/img/meshmodels/kubernetes/complete/deployment-complete.svg
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/deployment-white.svg
+        position:
+          posX: -685.4569770349513
+          posY: -34.01367156565573
+        whiteboardData:
+          style: {}
+    type: Deployment
+    version: ""
+  dapr-operator-xsvou:
+    annotations: {}
+    apiVersion: ""
+    dependsOn:
+    - dapr-operator-nxudp
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: meshery-core
+    name: dapr-operator
+    namespace: ""
+    settings: {}
+    traits:
+      meshmap:
+        edges: []
+        elementType: FIELD_REF_NODE
+        fieldRefData:
+          elementType: FIELD_REF_NODE
+          fieldPath: spec.template.spec.containers[0]
+          jsonSchemaPath: properties.spec.allOf[0].properties.template.allOf[0].properties.spec.allOf[0].properties.containers.items.allOf[0]
+        id: 38d86fa9-a554-4595-b27b-3459247a2586
+        label: spec.template.spec.containers[0]
+        meshmodel-data:
+          category:
+            metadata: null
+            name: Orchestration & Management
+          components: null
+          description: ""
+          displayName: Meshery Core
+          hostID: 26e64aa8-2d86-57bd-92b3-2a73160d27b4
+          id: 71af0d59-f11b-5151-924a-f9f805edb3df
+          metadata:
+            isAnnotation: false
+            subCategory: App Definition and Development
+            svgColor: ui/public/static/img/meshmodels/meshery-core/color/meshery-core-color.svg
+            svgComplete: ""
+            svgWhite: ui/public/static/img/meshmodels/meshery-core/color/meshery-core-color.svg
+          model:
+            version: 0.7.2
+          name: meshery-core
+          registrant:
+            hostname: artifacthub
+          relationships: null
+          schemaVersion: models.meshery.io/v1beta1
+          status: enabled
+          subCategory: App Definition and Development
+          version: v1.0.0
+        meshmodel-metadata:
+          capabilities: |-
+            {
+              "designer": {
+                "capabilities": {
+                  "config": true,
+                  "label": false,
+                  "policy": false,
+                  "relationships": true,
+                  "json-schema": false,
+                  "permissions": false,
+                  "workflow": false,
+                  "gitops": false,
+                  "history": false
+                },
+                "supportsCompoundDragAndDrop": false,
+                "edit": {
+                  "config": true,
+                  "copy": false,
+                  "delete": true,
+                  "duplicate": false,
+                  "reset-styles": false,
+                  "resolve": false,
+                  "lock": false,
+                  "shape": {
+                    "convert-shape": true
+                  },
+                  "style": true
+                },
+                "label": {
+                  "edit": false,
+                  "show": true,
+                  "sync-with-config-property": "name"
+                }
+              }
+            }
+          defaultData: ""
+          genealogy: ""
+          hasInvalidSchema: true
+          isAnnotation: true
+          primaryColor: '#326CE5'
+          secondaryColor: '#00D3A9'
+          shape: circle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            z-index: 30
+          styles: ""
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/meshery-core/color/container-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/meshery-core/white/container-white.svg
+        parent: 9ed4c311-1451-4b91-8071-c7d86d0d803e
+        position:
+          posX: -685.4569770349513
+          posY: -43.01367156565573
+        whiteboardData: {}
+    type: Container
+    version: ""
+  dapr-placement-server-dbygx:
+    annotations: {}
+    apiVersion: apps/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels:
+      app: dapr-placement-server
+    model: kubernetes
+    name: dapr-placement-server
+    namespace: default
+    settings:
+      spec:
+        pod Management Policy: Parallel
+        replicas: 1
+        selector:
+          match Labels:
+            app: dapr-placement-server
+        service Name: dapr-placement-server
+        template:
+          metadata:
+            annotations:
+              prometheus.io/path: /
+              prometheus.io/port: "9090"
+              prometheus.io/scrape: "true"
+            labels:
+              app: dapr-placement-server
+              app.kubernetes.io/component: placement
+              app.kubernetes.io/managed-by: helm
+              app.kubernetes.io/name: dapr
+              app.kubernetes.io/part-of: dapr
+              app.kubernetes.io/version: 1.1.0
+          spec:
+            affinity:
+              node Affinity:
+                required During Scheduling Ignored During Execution:
+                  node Selector Terms:
+                  - match Expressions:
+                    - key: kubernetes.io/os
+                      operator: In
+                      values:
+                      - linux
+            containers:
+            - args:
+              - --log-level
+              - info
+              - --enable-metrics
+              - --replicationFactor
+              - "100"
+              - --metrics-port
+              - "9090"
+              - --tls-enabled
+              command:
+              - /placement
+              env:
+              - name: PLACEMENT_ID
+                value From:
+                  field Ref:
+                    field Path: metadata.name
+              - name: NAMESPACE
+                value From:
+                  field Ref:
+                    field Path: metadata.namespace
+              image: docker.io/daprio/dapr:1.1.0
+              image Pull Policy: IfNotPresent
+              liveness Probe:
+                failure Threshold: 5
+                http Get:
+                  path: /healthz
+                  port: 8080
+                initial Delay Seconds: 10
+                period Seconds: 3
+              name: dapr-placement-server
+              ports:
+              - container Port: 50005
+                name: api
+              - container Port: 8201
+                name: raft-node
+              - container Port: 9090
+                name: metrics
+                protocol: TCP
+              readiness Probe:
+                failure Threshold: 5
+                http Get:
+                  path: /healthz
+                  port: 8080
+                initial Delay Seconds: 10
+                period Seconds: 3
+              resources: {}
+              security Context:
+                run As User: 0
+              volume Mounts:
+              - mount Path: /var/run/dapr/credentials
+                name: credentials
+                read Only: true
+            service Account Name: dapr-operator
+            volumes:
+            - name: credentials
+              secret:
+                secret Name: dapr-trust-bundle
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: f27d992a-2b3b-4aae-a26e-292dfd4d1b1e
+        meshmodel-metadata:
+          capabilities: |2-
+             {
+              "designer": {
+                "edit": {
+                  "shape": {
+                    "convert-shape": false
+                  }
+                }
+              }
+            }
+          defaultData: ""
+          genealogy: parent
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/white/kubernetes-icon-white.svg
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: cylinder
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            background-opacity: "0.2"
+            height: "15"
+            width: "15"
+            x: "12"
+            "y": "20"
+            z-index: 6
+          styles: '{"height":"15","width":"15","x":"12","y":"20","background-opacity":"0.2"}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/statefulset-color.svg
+          svgComplete: ui/public/static/img/meshmodels/kubernetes/complete/statefulset-complete.svg
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/statefulset-white.svg
+        position:
+          posX: -53.3404255389204
+          posY: -24.29416132119124
+        whiteboardData:
+          style: {}
+    type: StatefulSet
+    version: ""
+  dapr-placement-server-xclhd:
+    annotations: {}
+    apiVersion: v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels:
+      app: dapr-placement-server
+    model: kubernetes
+    name: dapr-placement-server
+    namespace: default
+    settings:
+      spec:
+        cluster IP: None
+        ports:
+        - name: api
+          port: 50005
+        - name: raft-node
+          port: 8201
+        publish Not Ready Addresses: true
+        selector:
+          app: dapr-placement-server
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: 27a10dd2-e3b3-4ecc-9ea6-86b671c20540
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/white/kubernetes-icon-white.svg
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-triangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            background-position-y: 4.5
+            height: 20
+            padding: 12
+            width: 20
+            x: 10px
+            "y": 12px
+            z-index: 17
+          styles: '{"height":20,"width":20,"padding":12,"background-position-y":4.5,"x":"10px","y":"12px"}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/service-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/service-white.svg
+        position:
+          posX: -275.5883226423824
+          posY: -28.244433441374866
+        whiteboardData:
+          style: {}
+    type: Service
+    version: ""
+  dapr-role-tokenreview-binding:
+    annotations: {}
+    apiVersion: rbac.authorization.k8s.io/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: dapr-role-tokenreview-binding
+    namespace: ""
+    settings:
+      role Ref:
+        api Group: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: system:auth-delegator
+      subjects:
+      - kind: ServiceAccount
+        name: dapr-operator
+        namespace: default
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: 7595f2fd-590f-49e3-9c4a-a622b62ebe46
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: false
+          logoURL: Created by Meshery Authors
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-rectangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            height: 25px
+            width: 25px
+            x: "7"
+            "y": "7"
+            z-index: 5
+          styles: '{"height":"25px","width":"25px","x":"7", "y":"7"}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/clusterrolebinding-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/clusterrolebinding-white.svg
+        position:
+          posX: -866.2622025500045
+          posY: 85.49792633139941
+        whiteboardData:
+          style: {}
+    type: ClusterRoleBinding
+    version: ""
+  dapr-secret-reader:
+    annotations: {}
+    apiVersion: rbac.authorization.k8s.io/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: dapr-secret-reader
+    namespace: default
+    settings:
+      role Ref:
+        api Group: rbac.authorization.k8s.io
+        kind: Role
+        name: secret-reader
+      subjects:
+      - kind: ServiceAccount
+        name: default
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: c046c834-3f15-4717-b4f3-c55f72ae37eb
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/white/kubernetes-icon-white.svg
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-rectangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            height: 25px
+            width: 25px
+            x: "7"
+            "y": "7"
+            z-index: 10
+          styles: '{"height":"25px","width":"25px","x":"7", "y":"7","z-index":4}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/rolebinding-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/rolebinding-white.svg
+        position:
+          posX: -896.4374456636652
+          posY: 221.95178726863904
+        whiteboardData:
+          style: {}
+    type: RoleBinding
+    version: ""
+  dapr-sentry-lzatp:
+    annotations: {}
+    apiVersion: apps/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels:
+      app: dapr-sentry
+    model: kubernetes
+    name: dapr-sentry
+    namespace: default
+    settings:
+      spec:
+        replicas: 1
+        selector:
+          match Labels:
+            app: dapr-sentry
+        template:
+          metadata:
+            annotations:
+              prometheus.io/path: /
+              prometheus.io/port: "9090"
+              prometheus.io/scrape: "true"
+            labels:
+              app: dapr-sentry
+              app.kubernetes.io/component: sentry
+              app.kubernetes.io/managed-by: helm
+              app.kubernetes.io/name: dapr
+              app.kubernetes.io/part-of: dapr
+              app.kubernetes.io/version: 1.1.0
+          spec:
+            affinity:
+              node Affinity:
+                required During Scheduling Ignored During Execution:
+                  node Selector Terms:
+                  - match Expressions:
+                    - key: kubernetes.io/os
+                      operator: In
+                      values:
+                      - linux
+            containers:
+            - args:
+              - --log-level
+              - info
+              - --enable-metrics
+              - --metrics-port
+              - "9090"
+              - --trust-domain
+              - cluster.local
+              command:
+              - /sentry
+              env:
+              - name: NAMESPACE
+                value From:
+                  field Ref:
+                    field Path: metadata.namespace
+              image: docker.io/daprio/dapr:1.1.0
+              image Pull Policy: IfNotPresent
+              liveness Probe:
+                failure Threshold: 5
+                http Get:
+                  path: /healthz
+                  port: 8080
+                initial Delay Seconds: 3
+                period Seconds: 3
+              name: dapr-sentry
+              ports:
+              - container Port: 50001
+              - container Port: 9090
+                name: metrics
+                protocol: TCP
+              readiness Probe:
+                failure Threshold: 5
+                http Get:
+                  path: /healthz
+                  port: 8080
+                initial Delay Seconds: 3
+                period Seconds: 3
+              resources: {}
+              security Context:
+                run As Non Root: true
+              volume Mounts:
+              - mount Path: /var/run/dapr/credentials
+                name: credentials
+                read Only: true
+            service Account Name: dapr-operator
+            volumes:
+            - name: credentials
+              secret:
+                secret Name: dapr-trust-bundle
+    traits:
+      meshmap:
+        edges:
+        - data:
+            id: 65e2c865-96a5-4613-af95-ce7500ac1682
+            metadata:
+              port: 80
+              protocol: TCP
+            source: 1e66f2bf-0ebd-4c63-bd1a-1cb213826bd2
+            subType: Network
+            target: 0d11442b-6ca1-4039-94ac-da25263ce56c
+          style:
+            control-point-distances: null
+            control-point-weights: "0.5"
+            curve-style: bezier
+            haystack-radius: "0"
+            line-color: rgb(153,153,153)
+            line-style: dotted
+            opacity: "1"
+            segment-distances: 20px
+            segment-weights: "0.5"
+            target-arrow-shape: vee
+            taxi-direction: auto
+            taxi-turn: 50%
+            taxi-turn-min-distance: 10px
+            width: 1.5px
+        fieldRefData: {}
+        id: 0d11442b-6ca1-4039-94ac-da25263ce56c
+        meshmodel-metadata:
+          capabilities: |-
+            {
+              "fieldRefs": [
+                {
+                  "fieldPath": "spec.template.spec.containers",
+                  "jsonSchemaPath": "properties.spec.allOf[0].properties.template.allOf[0].properties.spec.allOf[0].properties.containers.items.allOf[0]",
+                  "component": {
+                    "kind": "Container",
+                    "model": "meshery-core"
+                  },
+                  "renderChildren": true
+                },
+                {
+                  "fieldPath": "spec.template.spec.init Containers",
+                  "jsonSchemaPath": "properties.spec.allOf[0].properties.template.allOf[0].properties.spec.allOf[0].properties.init Containers.items.allOf[0]",
+                  "component": {
+                    "kind": "Container",
+                    "model": "meshery-core"
+                  },
+                  "renderChildren": true
+                }
+              ],
+              "designer": {
+                "edit": {
+                  "shape": {
+                    "convert-shape": false
+                  }
+                }
+              }
+            }
+          defaultData: ""
+          genealogy: parent
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: Created by Meshery Authors
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-rectangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            background-opacity: 0.5
+            border-width: 2
+            z-index: 26
+          styles: '{"border-width":2,"background-opacity":0.5}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/deployment-color.svg
+          svgComplete: ui/public/static/img/meshmodels/kubernetes/complete/deployment-complete.svg
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/deployment-white.svg
+        position:
+          posX: -47.89427020193669
+          posY: -212.86485591233412
+        whiteboardData:
+          style: {}
+    type: Deployment
+    version: ""
+  dapr-sentry-wddhi:
+    annotations: {}
+    apiVersion: ""
+    dependsOn:
+    - dapr-sentry-lzatp
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: meshery-core
+    name: dapr-sentry
+    namespace: ""
+    settings: {}
+    traits:
+      meshmap:
+        edges: []
+        elementType: FIELD_REF_NODE
+        fieldRefData:
+          elementType: FIELD_REF_NODE
+          fieldPath: spec.template.spec.containers[0]
+          jsonSchemaPath: properties.spec.allOf[0].properties.template.allOf[0].properties.spec.allOf[0].properties.containers.items.allOf[0]
+        id: b4b7e646-e745-44a9-b154-b206eb121610
+        label: spec.template.spec.containers[0]
+        meshmodel-data:
+          category:
+            metadata: null
+            name: Orchestration & Management
+          components: null
+          description: ""
+          displayName: Meshery Core
+          hostID: 26e64aa8-2d86-57bd-92b3-2a73160d27b4
+          id: 71af0d59-f11b-5151-924a-f9f805edb3df
+          metadata:
+            isAnnotation: false
+            subCategory: App Definition and Development
+            svgColor: ui/public/static/img/meshmodels/meshery-core/color/meshery-core-color.svg
+            svgComplete: ""
+            svgWhite: ui/public/static/img/meshmodels/meshery-core/color/meshery-core-color.svg
+          model:
+            version: 0.7.2
+          name: meshery-core
+          registrant:
+            hostname: artifacthub
+          relationships: null
+          schemaVersion: models.meshery.io/v1beta1
+          status: enabled
+          subCategory: App Definition and Development
+          version: v1.0.0
+        meshmodel-metadata:
+          capabilities: |-
+            {
+              "designer": {
+                "capabilities": {
+                  "config": true,
+                  "label": false,
+                  "policy": false,
+                  "relationships": true,
+                  "json-schema": false,
+                  "permissions": false,
+                  "workflow": false,
+                  "gitops": false,
+                  "history": false
+                },
+                "supportsCompoundDragAndDrop": false,
+                "edit": {
+                  "config": true,
+                  "copy": false,
+                  "delete": true,
+                  "duplicate": false,
+                  "reset-styles": false,
+                  "resolve": false,
+                  "lock": false,
+                  "shape": {
+                    "convert-shape": true
+                  },
+                  "style": true
+                },
+                "label": {
+                  "edit": false,
+                  "show": true,
+                  "sync-with-config-property": "name"
+                }
+              }
+            }
+          defaultData: ""
+          genealogy: ""
+          hasInvalidSchema: true
+          isAnnotation: true
+          primaryColor: '#326CE5'
+          secondaryColor: '#00D3A9'
+          shape: circle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            z-index: 32
+          styles: ""
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/meshery-core/color/container-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/meshery-core/white/container-white.svg
+        parent: 0d11442b-6ca1-4039-94ac-da25263ce56c
+        position:
+          posX: -47.89427020193669
+          posY: -221.86485591233412
+        whiteboardData: {}
+    type: Container
+    version: ""
+  dapr-sentry-wokyl:
+    annotations: {}
+    apiVersion: v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: dapr-sentry
+    namespace: default
+    settings:
+      spec:
+        ports:
+        - port: 80
+          protocol: TCP
+          target Port: 50001
+        selector:
+          app: dapr-sentry
+    traits:
+      meshmap:
+        edges:
+        - data:
+            id: 65e2c865-96a5-4613-af95-ce7500ac1682
+            metadata:
+              port: 80
+              protocol: TCP
+            source: 1e66f2bf-0ebd-4c63-bd1a-1cb213826bd2
+            subType: Network
+            target: 0d11442b-6ca1-4039-94ac-da25263ce56c
+          style:
+            control-point-distances: null
+            control-point-weights: "0.5"
+            curve-style: bezier
+            haystack-radius: "0"
+            line-color: rgb(153,153,153)
+            line-style: dotted
+            opacity: "1"
+            segment-distances: 20px
+            segment-weights: "0.5"
+            target-arrow-shape: vee
+            taxi-direction: auto
+            taxi-turn: 50%
+            taxi-turn-min-distance: 10px
+            width: 1.5px
+        fieldRefData: {}
+        id: 1e66f2bf-0ebd-4c63-bd1a-1cb213826bd2
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/white/kubernetes-icon-white.svg
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-triangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            background-position-y: 4.5
+            height: 20
+            padding: 12
+            width: 20
+            x: 10px
+            "y": 12px
+            z-index: 24
+          styles: '{"height":20,"width":20,"padding":12,"background-position-y":4.5,"x":"10px","y":"12px"}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/service-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/service-white.svg
+        position:
+          posX: 180.5
+          posY: -104.37004769469392
+        whiteboardData:
+          style: {}
+    type: Service
+    version: ""
+  dapr-sidecar-injector-cert:
+    annotations: {}
+    apiVersion: v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels:
+      app: dapr-sidecar-injector
+    model: kubernetes
+    name: dapr-sidecar-injector-cert
+    namespace: default
+    settings:
+      data:
+        tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUQzVENDQXNXZ0F3SUJBZ0lRZFVoT1BEeGZWY0UxQ2Z5R285L0hpVEFOQmdrcWhraUc5dzBCQVFzRkFEQWoKTVNFd0h3WURWUVFERXhoa1lYQnlMWE5wWkdWallYSXRhVzVxWldOMGIzSXRZMkV3SGhjTk1qUXdOekkwTURBeQpOVE16V2hjTk16UXdOekl5TURBeU5UTXpXakFnTVI0d0hBWURWUVFERXhWa1lYQnlMWE5wWkdWallYSXRhVzVxClpXTjBiM0l3Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLQW9JQkFRRHBXYmVkSUtuUVA2R04KK2VLY3B0SlgxSDVlQVNLWEdSRnBFSWs3N1FON2dyV2krd2poa1krdWF1Qm5lRERBMFN3ZFVPYXJkU3dQTXc3ZgpJMDd6RXM3S3ZaVmhBQW1EWXBaV2p5ZitXeWpWTENHc3dVRSsydURYdDFzSHZXMkF0SzlRZW9xd3lYYnk0a0FCCko2c0tpY3VmdklaOWpHY1NySzFNdGN5a3JNL01MQjdZMi9Cd1lyZWU1aHJkdVRXQktxUlUvbUIyckRhbUhvTkQKTXJVdHpuSmZKMEt5b3VCT2VWcFNYeUplMXZ1SEN0NVp6dC9aS3o3Q0ljTW96Yk96K0dOdDFvbzRWUm9vN1Q1NwpyN1Zzb2dLRUxlUzdjYjU2SUdCalg0MndoZVYyelkyWlhJYW5BYVI3ZC9tcFJoOFpwaU5pR2JFZ0lENnc1L0lyCkhSKzJHMDQzQWdNQkFBR2pnZ0VPTUlJQkNqQU9CZ05WSFE4QkFmOEVCQU1DQmFBd0hRWURWUjBsQkJZd0ZBWUkKS3dZQkJRVUhBd0VHQ0NzR0FRVUZCd01DTUF3R0ExVWRFd0VCL3dRQ01BQXdId1lEVlIwakJCZ3dGb0FVWUpZQQpqbWRsRGxNOXJFSE9aQkxBN0JKTDJjVXdnYWtHQTFVZEVRU0JvVENCbm9JZFpHRndjaTF6YVdSbFkyRnlMV2x1CmFtVmpkRzl5TG1SbFptRjFiSFNDSVdSaGNISXRjMmxrWldOaGNpMXBibXBsWTNSdmNpNWtaV1poZFd4MExuTjIKWTRJcFpHRndjaTF6YVdSbFkyRnlMV2x1YW1WamRHOXlMbVJsWm1GMWJIUXVjM1pqTG1Oc2RYTjBaWEtDTDJSaApjSEl0YzJsa1pXTmhjaTFwYm1wbFkzUnZjaTVrWldaaGRXeDBMbk4yWXk1amJIVnpkR1Z5TG14dlkyRnNNQTBHCkNTcUdTSWIzRFFFQkN3VUFBNElCQVFCUTQ2RjV0MGhTZlhnSjVsREh0czZmTitsOG9pblJDWEt4aUhFVmdtS1UKS2RBNmNPRUM1aFR2dGJXR1RLYW5ra0dpVDJpV0RoWHc3b1JRN2doKy8xbldpTExRNkRub1plS3grb2JTV0p6TwowVmpBSGJuWHNXSlFEc09ZMmlYSi9TYUdlK1Y0N3BFMENwT1pmbHFQSHNsUStrZGZUbnRYQWZBSzZLRXZXWjFpCkl5Z1I2enhWZTYwTXd5dnlJbHNQU0dHbGxBQTUwblFENlVQTTYzejhETHdoeGtBZ0FsMk9QeEdCVUFSTkpGWHEKN1V4djNOL1F0bDEwdU8xRk15UVdWaEZVakhzbXUreTl1aGNlQ1dTa1pMdVZwSmF3MXBrM2gyNHdJZFNXVnZWUwpHRFlmV1F2aWFCQlhjSHNNcUdJOURpNk5hM2dlV1c1U3BoVi9oalRDUkZrbQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+        tls.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBNlZtM25TQ3AwRCtoamZuaW5LYlNWOVIrWGdFaWx4a1JhUkNKTyswRGU0SzFvdnNJCjRaR1BybXJnWjNnd3dORXNIVkRtcTNVc0R6TU8zeU5POHhMT3lyMlZZUUFKZzJLV1ZvOG4vbHNvMVN3aHJNRkIKUHRyZzE3ZGJCNzF0Z0xTdlVIcUtzTWwyOHVKQUFTZXJDb25Mbjd5R2ZZeG5FcXl0VExYTXBLelB6Q3dlMk52dwpjR0szbnVZYTNiazFnU3FrVlA1Z2RxdzJwaDZEUXpLMUxjNXlYeWRDc3FMZ1RubGFVbDhpWHRiN2h3cmVXYzdmCjJTcyt3aUhES00yenMvaGpiZGFLT0ZVYUtPMCtlNisxYktJQ2hDM2t1M0crZWlCZ1kxK05zSVhsZHMyTm1WeUcKcHdHa2UzZjVxVVlmR2FZallobXhJQ0Erc09meUt4MGZ0aHRPTndJREFRQUJBb0lCQUE1WWVxWkpSTWROc2lQbApVZDRwajFMZytHZlZFQWhUL1RNRlZqcDk1ckhvSmp4L3pGcjV0T2lYSDNhYzkvcFNvYkNuc1phbTNHK094d0pHCnpHcTdKRVZvaEU5elRpSnFwQzFzSFp4UWhHRWVsbTlsYmhwc0lGaUNxREVBbjBQRFYrZk5zTXNQaDZXRTdVUmsKNk9uNzhLM0FURkJabWxpV2p3emhQRlIvWDBNQThWS2Y4aXRYWUlDeW93M1J5b1kwQzNTL0lRSW1ZTHdlVzE2NwpJVTNnN0FpWkdvMTR6RlJnaGpiejF3bm8zTm8vWEpqakRiaGNrSDVzZkU4S1lDVUlCMkJBWkhWaUpNZm9tamJPCnkzK0tNSkVyRXk3VmtCQnl6bWdxUE5GdkoxdVpSei9adHk3dTBoTUhWdG9KZEdNMEV2a3JuSTFFSEU1VlMwTysKZCtSbkxJRUNnWUVBOTVDNlJYNUlmMkRZTE01bDgzeGNTS21YSFJVbHExT1VaM3JlVXhYaVBxdVR0a0h1OWhHegoycGFTa3J2NitDMWRoaUJiTmVWWmZjN1FYRGtHVzRwdExGQkEzSzM2NlFMb0wxWnJORTBJb2RtQ0IwZHJLQjdmCjgyaDlUb2JqTjA5WEZWRG5kUHg3bU80Z2lXMEcydVNlMS9iOFIyRGV2TzJwVThjTW9zYTNOY0VDZ1lFQThVMEIKeUxvM2RTd0FHQmdLT3JaTWdWeVQwZUhKZFY2cmI0V1UzNVZGZXZXbUIycDBJbFRjdDMybmRHVEpxbE1lZEZ0Rwo1TU55cFA1d1RKa1JTdHRRM0R5TEJZNkI5UWwzVzgrK09mQW5zdTFwRUJtUDFyaVpZOVVKYzVwN3JpdDlKckM2ClF0NHVTLzJXMjdoUjY0Y24wTVdmRFEwTXExcE5rM1d1aUpJc3NmY0NnWUVBc2w2Smh4WjB2Nm9VTnp4Q3dvc0EKcHEzaUhlY2xxK3BkUzYyQVVCYTlXdkFlVGp2MUkwQWYrTWR5TmR6UTkwMGdURW8xellCQTJWOVFTcElmblljQQpIK1IyeDBsbk5jbU5ac1g2R2NYRENYSUF1S1BoZGhmQXZjeTBOQWNGNE16K2JuSkxRY1BFZmF4Y3J3ZHAzLzdHCjM4MnBlUGczbzZJTTFUcmVSTTJ1SlVFQ2dZRUE0ZTNLUjlralo5QWszbXBUMlprcWxNekxrdTRuSkgvWllIZmcKWmw5clNLK01IdEZybjJGNXIwdzFaK09lZHAyUW5EMkNhVnNla3FHeEgrY0pxOThoSExTTExrNjZHMlliblprcgpjVEFNMjVreWorSi9MUHAybEdTNWpzWU1HNDJZaG90ZU9wR3hJM0Z5dUpNaUVMYmhiclk2TDR3U1dyWVlnSUxsClFmWXJadzBDZ1lBR29uSktWM0c4a0c1TzZURVdvdS9EZ2tCUlhkUXZNdDBEODNUYjJ5TERnYlF1OENaeGVEMDAKVjVyOUo2VStmMDhXWC9FZElkZ2lscjh4UFc0eDBjODZNNjl6RjcyVTVNNWxOZnFLOWtNd3ZnZThQendJby9DUQoyR0hPVnd5WTMwcjJKT1o4bCtVV0pIYm5sNkdzR2xRTWI2WXJIVEE0MzArV1FnMTJNOVNHWkE9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: 8d04fc03-543d-48c5-b2cf-9a13adfd7d1e
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: Created by Meshery Authors
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: shield
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            background-clip: node
+            background-image-containment: over
+            background-opacity: "0"
+            height: 32
+            padding: 1
+            width: 32
+            z-index: 15
+          styles: '{"height":32,"width":32,"background-clip":"node","background-image-containment":"over","padding":1,"background-opacity":"0"}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/secret-color.svg
+          svgComplete: ui/public/static/img/meshmodels/kubernetes/complete/secret-complete.svg
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/secret-white.svg
+        position:
+          posX: -403.8070782401269
+          posY: -91.60748687189135
+        whiteboardData:
+          style: {}
+    type: Secret
+    version: ""
+  dapr-sidecar-injector-cygfm:
+    annotations: {}
+    apiVersion: apps/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels:
+      app: dapr-sidecar-injector
+    model: kubernetes
+    name: dapr-sidecar-injector
+    namespace: default
+    settings:
+      spec:
+        selector:
+          match Labels:
+            app: dapr-sidecar-injector
+        template:
+          metadata:
+            annotations:
+              prometheus.io/path: /
+              prometheus.io/port: "9090"
+              prometheus.io/scrape: "true"
+            labels:
+              app: dapr-sidecar-injector
+              app.kubernetes.io/component: sidecar-injector
+              app.kubernetes.io/managed-by: helm
+              app.kubernetes.io/name: dapr
+              app.kubernetes.io/part-of: dapr
+              app.kubernetes.io/version: 1.1.0
+          spec:
+            affinity:
+              node Affinity:
+                required During Scheduling Ignored During Execution:
+                  node Selector Terms:
+                  - match Expressions:
+                    - key: kubernetes.io/os
+                      operator: In
+                      values:
+                      - linux
+            containers:
+            - args:
+              - --log-level
+              - info
+              - --enable-metrics
+              - --metrics-port
+              - "9090"
+              command:
+              - /injector
+              env:
+              - name: TLS_CERT_FILE
+                value: /dapr/cert/tls.crt
+              - name: TLS_KEY_FILE
+                value: /dapr/cert/tls.key
+              - name: SIDECAR_IMAGE
+                value: docker.io/daprio/daprd:1.1.0
+              - name: SIDECAR_IMAGE_PULL_POLICY
+                value: IfNotPresent
+              - name: NAMESPACE
+                value From:
+                  field Ref:
+                    field Path: metadata.namespace
+              env From: []
+              image: docker.io/daprio/dapr:1.1.0
+              image Pull Policy: IfNotPresent
+              liveness Probe:
+                failure Threshold: 5
+                http Get:
+                  path: /healthz
+                  port: 8080
+                initial Delay Seconds: 3
+                period Seconds: 3
+              name: dapr-sidecar-injector
+              ports:
+              - container Port: 4000
+                name: https
+                protocol: TCP
+              - container Port: 9090
+                name: metrics
+                protocol: TCP
+              readiness Probe:
+                failure Threshold: 5
+                http Get:
+                  path: /healthz
+                  port: 8080
+                initial Delay Seconds: 3
+                period Seconds: 3
+              resources: {}
+              security Context:
+                run As Non Root: true
+                run As User: 1000
+              volume Devices: []
+              volume Mounts:
+              - mount Path: /dapr/cert
+                name: cert
+                read Only: true
+            service Account Name: dapr-operator
+            volumes:
+            - name: cert
+              secret:
+                secret Name: dapr-sidecar-injector-cert
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: e149c4b5-6cea-49c6-8776-40ee835a9bc0
+        meshmodel-metadata:
+          capabilities: |-
+            {
+              "fieldRefs": [
+                {
+                  "fieldPath": "spec.template.spec.containers",
+                  "jsonSchemaPath": "properties.spec.allOf[0].properties.template.allOf[0].properties.spec.allOf[0].properties.containers.items.allOf[0]",
+                  "component": {
+                    "kind": "Container",
+                    "model": "meshery-core"
+                  },
+                  "renderChildren": true
+                },
+                {
+                  "fieldPath": "spec.template.spec.init Containers",
+                  "jsonSchemaPath": "properties.spec.allOf[0].properties.template.allOf[0].properties.spec.allOf[0].properties.init Containers.items.allOf[0]",
+                  "component": {
+                    "kind": "Container",
+                    "model": "meshery-core"
+                  },
+                  "renderChildren": true
+                }
+              ],
+              "designer": {
+                "edit": {
+                  "shape": {
+                    "convert-shape": false
+                  }
+                }
+              }
+            }
+          defaultData: ""
+          genealogy: parent
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: Created by Meshery Authors
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-rectangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            background-opacity: 0.5
+            border-width: 2
+            z-index: 11
+          styles: '{"border-width":2,"background-opacity":0.5}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/deployment-color.svg
+          svgComplete: ui/public/static/img/meshmodels/kubernetes/complete/deployment-complete.svg
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/deployment-white.svg
+        position:
+          posX: -248.4128367699593
+          posY: -201.56925395968946
+        whiteboardData:
+          style: {}
+    type: Deployment
+    version: ""
+  dapr-sidecar-injector-dbaay:
+    annotations: {}
+    apiVersion: v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: dapr-sidecar-injector
+    namespace: default
+    settings:
+      spec:
+        ports:
+        - name: https
+          port: 443
+          protocol: TCP
+          target Port: https
+        selector:
+          app: dapr-sidecar-injector
+        type: ClusterIP
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: 845a3543-ded0-4a3f-a139-fd6d5bb911f4
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/white/kubernetes-icon-white.svg
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-triangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            background-position-y: 4.5
+            height: 20
+            padding: 12
+            width: 20
+            x: 10px
+            "y": 12px
+            z-index: 8
+          styles: '{"height":20,"width":20,"padding":12,"background-position-y":4.5,"x":"10px","y":"12px"}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/service-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/service-white.svg
+        position:
+          posX: 540.8603751344846
+          posY: 138.96375361997133
+        whiteboardData:
+          style: {}
+    type: Service
+    version: ""
+  dapr-sidecar-injector-fdikd:
+    annotations: {}
+    apiVersion: ""
+    dependsOn:
+    - dapr-sidecar-injector-cygfm
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: meshery-core
+    name: dapr-sidecar-injector
+    namespace: ""
+    settings: {}
+    traits:
+      meshmap:
+        edges: []
+        elementType: FIELD_REF_NODE
+        fieldRefData:
+          elementType: FIELD_REF_NODE
+          fieldPath: spec.template.spec.containers[0]
+          jsonSchemaPath: properties.spec.allOf[0].properties.template.allOf[0].properties.spec.allOf[0].properties.containers.items.allOf[0]
+        id: 903680a0-06b6-4f61-8d6f-7565c4e47263
+        label: spec.template.spec.containers[0]
+        meshmodel-data:
+          category:
+            metadata: null
+            name: Orchestration & Management
+          components: null
+          description: ""
+          displayName: Meshery Core
+          hostID: 26e64aa8-2d86-57bd-92b3-2a73160d27b4
+          id: 71af0d59-f11b-5151-924a-f9f805edb3df
+          metadata:
+            isAnnotation: false
+            subCategory: App Definition and Development
+            svgColor: ui/public/static/img/meshmodels/meshery-core/color/meshery-core-color.svg
+            svgComplete: ""
+            svgWhite: ui/public/static/img/meshmodels/meshery-core/color/meshery-core-color.svg
+          model:
+            version: 0.7.2
+          name: meshery-core
+          registrant:
+            hostname: artifacthub
+          relationships: null
+          schemaVersion: models.meshery.io/v1beta1
+          status: enabled
+          subCategory: App Definition and Development
+          version: v1.0.0
+        meshmodel-metadata:
+          capabilities: |-
+            {
+              "designer": {
+                "capabilities": {
+                  "config": true,
+                  "label": false,
+                  "policy": false,
+                  "relationships": true,
+                  "json-schema": false,
+                  "permissions": false,
+                  "workflow": false,
+                  "gitops": false,
+                  "history": false
+                },
+                "supportsCompoundDragAndDrop": false,
+                "edit": {
+                  "config": true,
+                  "copy": false,
+                  "delete": true,
+                  "duplicate": false,
+                  "reset-styles": false,
+                  "resolve": false,
+                  "lock": false,
+                  "shape": {
+                    "convert-shape": true
+                  },
+                  "style": true
+                },
+                "label": {
+                  "edit": false,
+                  "show": true,
+                  "sync-with-config-property": "name"
+                }
+              }
+            }
+          defaultData: ""
+          genealogy: ""
+          hasInvalidSchema: true
+          isAnnotation: true
+          primaryColor: '#326CE5'
+          secondaryColor: '#00D3A9'
+          shape: circle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            z-index: 29
+          styles: ""
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/meshery-core/color/container-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/meshery-core/white/container-white.svg
+        parent: e149c4b5-6cea-49c6-8776-40ee835a9bc0
+        position:
+          posX: -248.41283676995934
+          posY: -210.56925395968946
+        whiteboardData: {}
+    type: Container
+    version: ""
+  dapr-sidecar-injector-tuwsi:
+    annotations: {}
+    apiVersion: admissionregistration.k8s.io/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels:
+      app: dapr-sidecar-injector
+    model: kubernetes
+    name: dapr-sidecar-injector
+    namespace: ""
+    settings:
+      webhooks:
+      - admission Review Versions:
+        - v1
+        - v1beta1
+        client Config:
+          CA Bundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURNakNDQWhxZ0F3SUJBZ0lSQU5jZlhaNDNvWDd1b2VXbEtJYmdaeFl3RFFZSktvWklodmNOQVFFTEJRQXcKSXpFaE1COEdBMVVFQXhNWVpHRndjaTF6YVdSbFkyRnlMV2x1YW1WamRHOXlMV05oTUI0WERUSTBNRGN5TkRBdwpNalV6TWxvWERUTTBNRGN5TWpBd01qVXpNbG93SXpFaE1COEdBMVVFQXhNWVpHRndjaTF6YVdSbFkyRnlMV2x1CmFtVmpkRzl5TFdOaE1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBdk5uV25ONlIKczJwODE4YWZ1WXRhTFQyLzlqNXUzOEx6NjI1VWd3UmJ3MG9ibDFSWCsyUklmZDNNTVZFZGwreW9GcHk3Z0ZjVgpkT3VuU0hkUW9FdXpodEJkaEN0alhrblRiY0V3amNucXZSYXBKQXA1VjlhL09BeGs5OHY0SmRta0tXSmpjdGhNCkdrTlVSK2F4cmVqdWFIejE3V0dONmMyN1RGdWh0enlPRG01OVBpeGh2UTVoTUdySERsaUttOW84Rzdndmk2QjkKVDdGT0lQZG5YOUEvSVNCSTVzUVJYdHd4dlZrMithWnpQaUhzQno5ZGN0ZlQ2OC9GN1ZMc0drYUF0bnBPU3hwQQphYzBwK3dETWdpTDljRUVvU1NFb2R3ZjJEMzk0NjBsYU9UN1cyVzVTSVZ5SU55akgra0txY2ZtSFlhT2o0cllYCmlGTUY2d3VHd1F3SU9RSURBUUFCbzJFd1h6QU9CZ05WSFE4QkFmOEVCQU1DQXFRd0hRWURWUjBsQkJZd0ZBWUkKS3dZQkJRVUhBd0VHQ0NzR0FRVUZCd01DTUE4R0ExVWRFd0VCL3dRRk1BTUJBZjh3SFFZRFZSME9CQllFRkdDVwpBSTVuWlE1VFBheEJ6bVFTd093U1M5bkZNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUFZbnl0R1lrazNidGpZClJMVlEvenU2cTRzdXZsdXM5UDZyNnpUKzlPZkc2dlJpeGhVWEl1dmNwQlZObkRqa1FIcE11ZVZBOThuQTZLdzEKdzZTN2xXMnZscXlVdlZCcnNLT1VMdkkva0VQY2V5SytQaWMyMWZsY1NTQzB3MCtrMHo2ZCtLM2hLTk15NXc3MwpJUm55VlFNNTZVVzd5MVEvdExzM3c3TkVzWkp3NnJIak51b0N6RUNTWjh4VzNoOTRDS3M3U0xwWmJWaTdDeHU1CmxzZE9heTQrYjdCd1RjaG00THVReFNuczVCWFZmeWdvdHhpYnZEREpVOW9hU0Q4cm42QVNOdzdPajE2M2FZNkkKTThJN2VwZzE5b3NHbVZUUElOMDFPTjVHU3I0RWp3akVUTGkyYnplaVFGUE5BdFhlR2k3dHV4S2VaNm02TGI5VQp3aEtQeXd2bgotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+          service:
+            name: dapr-sidecar-injector
+            namespace: default
+            path: /mutate
+        failure Policy: Ignore
+        name: sidecar-injector.dapr.io
+        rules:
+        - api Groups:
+          - ""
+          api Versions:
+          - v1
+          operations:
+          - CREATE
+          resources:
+          - pods
+        side Effects: None
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: 827ddcf3-15b8-47e0-8777-337bcb2ce713
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isNamespaced: false
+          logoURL: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/white/kubernetes-icon-white.svg
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-hexagon
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            z-index: 13
+          styles: ""
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/mutatingwebhookconfiguration-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/mutatingwebhookconfiguration-white.svg
+        position:
+          posX: -411.0994557596327
+          posY: -182.1914893862216
+        whiteboardData:
+          style: {}
+    type: MutatingWebhookConfiguration
+    version: ""
+  dapr-trust-bundle:
+    annotations: {}
+    apiVersion: v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels:
+      app: dapr-sentry
+    model: kubernetes
+    name: dapr-trust-bundle
+    namespace: default
+    settings:
+      data:
+        newKey: New Value
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: 92f86752-4650-4fff-ab14-7cb5af61a963
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: Created by Meshery Authors
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: shield
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            background-clip: node
+            background-image-containment: over
+            background-opacity: "0"
+            height: 32
+            padding: 1
+            width: 32
+            z-index: 27
+          styles: '{"height":32,"width":32,"background-clip":"node","background-image-containment":"over","padding":1,"background-opacity":"0"}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/secret-color.svg
+          svgComplete: ui/public/static/img/meshmodels/kubernetes/complete/secret-complete.svg
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/secret-white.svg
+        position:
+          posX: 93.38841449351449
+          posY: -22.328582967495613
+        whiteboardData:
+          style: {}
+    type: Secret
+    version: ""
+  daprsystem:
+    annotations: {}
+    apiVersion: dapr.io/v1alpha1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: dapr
+    name: daprsystem
+    namespace: default
+    settings:
+      spec:
+        access Control:
+          policies: []
+        api:
+          allowed: []
+          denied: []
+        app Http Pipeline:
+          handlers: []
+        components:
+          deny: []
+        features: []
+        http Pipeline:
+          handlers: []
+        mTLS:
+          allowed Clock Skew: 15m
+          enabled: true
+          token Validators: []
+          workload Cert TTL: 24h
+        metric:
+          enabled: true
+          rules: []
+        metrics:
+          enabled: true
+          rules: []
+        secrets:
+          scopes: []
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: e37305ac-f447-44a5-ab29-0fad5ba13b5b
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: https://github.com/cncf/artwork/blob/master/examples/incubating.md#dapr-logos
+          model: dapr
+          modelDisplayName: Dapr
+          primaryColor: '#0d2192'
+          secondaryColor: '#5266D7'
+          shape: circle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            z-index: 28
+          styles: ""
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/dapr/color/component-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/dapr/white/component-white.svg
+        position:
+          posX: 581.300831297623
+          posY: 281.5883084485199
+        whiteboardData:
+          style: {}
+    type: Configuration
+    version: ""
+  dashboard-reader-global:
+    annotations: {}
+    apiVersion: rbac.authorization.k8s.io/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: dashboard-reader-global
+    namespace: ""
+    settings:
+      role Ref:
+        api Group: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: dashboard-reader
+      subjects:
+      - kind: ServiceAccount
+        name: dashboard-reader
+        namespace: default
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: e465131e-04e9-4637-9cde-ed97e1c78263
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: false
+          logoURL: Created by Meshery Authors
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-rectangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            height: 25px
+            width: 25px
+            x: "7"
+            "y": "7"
+            z-index: 1001
+          styles: '{"height":"25px","width":"25px","x":"7", "y":"7"}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/clusterrolebinding-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/clusterrolebinding-white.svg
+        position:
+          posX: -853.8283617475158
+          posY: 339.7776772094329
+        whiteboardData:
+          style:
+            height: 10.5
+            width: 10.5
+            z-index: 1000
+    type: ClusterRoleBinding
+    version: ""
+  dashboard-reader-knnia:
+    annotations: {}
+    apiVersion: rbac.authorization.k8s.io/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: dashboard-reader
+    namespace: ""
+    settings:
+      rules:
+      - api Groups:
+        - ""
+        - dapr.io
+        - apps
+        - extensions
+        resources:
+        - deployments
+        - pods
+        - pods/log
+        - components
+        - configurations
+        - namespaces
+        verbs:
+        - get
+        - list
+    traits:
+      meshmap:
+        edges:
+        - data:
+            id: 7f0cbc75-2e97-41e6-a2d0-a10657bcb0fc
+            metadata:
+              binded_by: e465131e-04e9-4637-9cde-ed97e1c78263
+            source: d8a6e888-9f7e-4bb8-ad52-3b4bb535400a
+            subType: Permission
+            target: c0f17d03-ce53-40a0-a7cd-d17fb8cee9e1
+          style:
+            control-point-distances: null
+            control-point-weights: "0.5"
+            curve-style: bezier
+            haystack-radius: "0"
+            line-color: rgb(153,153,153)
+            line-style: dotted
+            opacity: "1"
+            segment-distances: 20px
+            segment-weights: "0.5"
+            target-arrow-shape: vee
+            taxi-direction: auto
+            taxi-turn: 50%
+            taxi-turn-min-distance: 10px
+            width: 1.5px
+        fieldRefData: {}
+        id: d8a6e888-9f7e-4bb8-ad52-3b4bb535400a
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: false
+          logoURL: Created by Meshery Authors
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-rectangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            height: 22px
+            width: 22px
+            x: "8.5"
+            "y": "7.5"
+            z-index: 20
+          styles: '{"height":"22px", "width":"22px", "x":"8.5", "y":"7.5"}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/clusterrole-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/clusterrole-white.svg
+        position:
+          posX: -837.6765860200559
+          posY: 385.85827532278967
+        whiteboardData:
+          style: {}
+    type: ClusterRole
+    version: ""
+  dashboard-reader-pjrkx:
+    annotations: {}
+    apiVersion: v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: dashboard-reader
+    namespace: default
+    settings: {}
+    traits:
+      meshmap:
+        edges:
+        - data:
+            id: 7f0cbc75-2e97-41e6-a2d0-a10657bcb0fc
+            metadata:
+              binded_by: e465131e-04e9-4637-9cde-ed97e1c78263
+            source: d8a6e888-9f7e-4bb8-ad52-3b4bb535400a
+            subType: Permission
+            target: c0f17d03-ce53-40a0-a7cd-d17fb8cee9e1
+          style:
+            control-point-distances: null
+            control-point-weights: "0.5"
+            curve-style: bezier
+            haystack-radius: "0"
+            line-color: rgb(153,153,153)
+            line-style: dotted
+            opacity: "1"
+            segment-distances: 20px
+            segment-weights: "0.5"
+            target-arrow-shape: vee
+            taxi-direction: auto
+            taxi-turn: 50%
+            taxi-turn-min-distance: 10px
+            width: 1.5px
+        fieldRefData: {}
+        id: c0f17d03-ce53-40a0-a7cd-d17fb8cee9e1
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/white/kubernetes-icon-white.svg
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: bottom-round-rectangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            z-index: 18
+          styles: ""
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/serviceaccount-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/serviceaccount-white.svg
+        position:
+          posX: -869.8901155827217
+          posY: 293.9539092247481
+        whiteboardData:
+          style: {}
+    type: ServiceAccount
+    version: ""
+  secret-reader:
+    annotations: {}
+    apiVersion: rbac.authorization.k8s.io/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: secret-reader
+    namespace: default
+    settings:
+      rules:
+      - api Groups:
+        - ""
+        resources:
+        - secrets
+        verbs:
+        - get
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: ea057be6-7093-4dc1-9b2b-95f9a98b6ca9
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isModelAnnotation: "FALSE"
+          isNamespaced: true
+          logoURL: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/white/kubernetes-icon-white.svg
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: round-rectangle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides: '{"height":"22px", "width":"22px", "x":"8.5", "y":"7.5","z-index":4}'
+          styles: '{"height":"22px", "width":"22px", "x":"8.5", "y":"7.5","z-index":4}'
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/role-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/role-white.svg
+        position:
+          posX: -874.0767840213875
+          posY: 149.82884342577708
+        whiteboardData:
+          style: {}
+    type: Role
+    version: ""
+  subscriptions.dapr.io:
+    annotations: {}
+    apiVersion: apiextensions.k8s.io/v1
+    dependsOn: []
+    id: null
+    isAnnotation: null
+    labels: {}
+    model: kubernetes
+    name: subscriptions.dapr.io
+    namespace: ""
+    settings:
+      spec:
+        group: dapr.io
+        names:
+          categories:
+          - all
+          - dapr
+          kind: Subscription
+          plural: subscriptions
+          singular: subscription
+        scope: Namespaced
+        versions:
+        - name: v1alpha1
+          schema:
+            open APIV3Schema:
+              description: Subscription describes an pub/sub event subscription
+              properties:
+                api Version:
+                  description: 'APIVersion defines the versioned schema of this representation
+                    of an object. Servers should convert recognized schemas to the
+                    latest internal value, and may reject unrecognized values. More
+                    info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+                  type: string
+                kind:
+                  description: 'Kind is a string value representing the REST resource
+                    this object represents. Servers may infer this from the endpoint
+                    the client submits requests to. Cannot be updated. In CamelCase.
+                    More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+                  type: string
+                metadata:
+                  type: object
+                scopes:
+                  items:
+                    type: string
+                  type: array
+                spec:
+                  description: SubscriptionSpec is the spec for an event subscription
+                  properties:
+                    pubsubname:
+                      type: string
+                    route:
+                      type: string
+                    topic:
+                      type: string
+                  required:
+                  - pubsubname
+                  - route
+                  - topic
+                  type: object
+              type: object
+          served: true
+          storage: true
+    traits:
+      meshmap:
+        edges: []
+        fieldRefData: {}
+        id: c9ffbc44-138b-4b19-aa05-50670cf20cec
+        meshmodel-metadata:
+          capabilities: ""
+          defaultData: ""
+          genealogy: ""
+          isAnnotation: false
+          isCustomResource: false
+          isNamespaced: false
+          logoURL: https://github.com/cncf/artwork/blob/master/projects/kubernetes/icon/white/kubernetes-icon-white.svg
+          model: kubernetes
+          modelDisplayName: Kubernetes
+          primaryColor: '#326CE5'
+          secondaryColor: '#7aa1f0'
+          shape: circle
+          shapePolygonPoints: ""
+          status: enabled
+          styleOverrides:
+            z-index: 25
+          styles: ""
+          subCategory: ""
+          svgColor: ui/public/static/img/meshmodels/kubernetes/color/customresourcedefinition-color.svg
+          svgComplete: ""
+          svgWhite: ui/public/static/img/meshmodels/kubernetes/white/customresourcedefinition-white.svg
+        position:
+          posX: 557.8955678152513
+          posY: -99.54652309652937
+        whiteboardData:
+          style: {}
+    type: CustomResourceDefinition
+    version: ""
